@@ -18,7 +18,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 @Configuration
 @EnableSwagger2
@@ -51,6 +50,5 @@ public class SwaggerConfig {
         return new ApiInfo(" rest api", "", "", "", new Contact("Created By ",
                 "", ""), "", "", Collections.emptyList());
     }
-
 
 }

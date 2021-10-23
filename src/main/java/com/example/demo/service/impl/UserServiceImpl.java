@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dto.MessageDto;
+import com.example.demo.dto.response.ResponseMessage;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
@@ -36,13 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public MessageDto deleteUser(Long id) {
+    public ResponseMessage deleteUser(Long id) {
         User user = userRepository.findById(id).get();
         if (user != null) {
             userRepository.delete(user);
-            return new MessageDto("User deleted!!!");
+            return new ResponseMessage("User deleted!!!");
         } else {
-            return new MessageDto("User not found :(");
+            return new ResponseMessage("User not found :(");
         }
     }
 
