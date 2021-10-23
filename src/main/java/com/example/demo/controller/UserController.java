@@ -33,4 +33,9 @@ public class UserController {
     public ResponseEntity<?> delete(@RequestBody Long id) {
         return ResponseEntity.ok(userService.deleteUser(id));
     }
+
+    @GetMapping("/user/all")
+    public ResponseEntity<?> allUsers(@RequestBody Long id) {
+        return ResponseEntity.ok(userService.deleteUser(id));
+    }
 }

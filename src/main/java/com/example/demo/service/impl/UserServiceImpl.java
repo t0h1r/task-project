@@ -6,6 +6,8 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -40,5 +42,10 @@ public class UserServiceImpl implements UserService {
         } else {
             return new MessageDto("User not found :(");
         }
+    }
+
+    @Override
+    public List<User> allUsers() {
+        return userRepository.findAll();
     }
 }
