@@ -6,6 +6,7 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UserService{
@@ -13,4 +14,5 @@ public interface UserService{
     User update(Long id, User user);
     MessageDto deleteUser(Long id);
     List<User> allUsers();
+    User findById(Long id);
 }

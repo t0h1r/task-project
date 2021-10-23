@@ -35,7 +35,13 @@ public class UserController {
     }
 
     @GetMapping("/user/all")
-    public ResponseEntity<?> allUsers(@RequestBody Long id) {
-        return ResponseEntity.ok(userService.deleteUser(id));
+    public ResponseEntity<?> allUsers() {
+        return ResponseEntity.ok(userService.allUsers());
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.findById(id));
+    }
+
 }
