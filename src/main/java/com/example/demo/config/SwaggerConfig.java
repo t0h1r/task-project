@@ -25,9 +25,6 @@ import java.util.function.Predicate;
 public class SwaggerConfig {
     List<ResponseMessage> list = new ArrayList<>();
 
-    public static final String AUTHORIZATION_HEADER = "Authorization";
-    public static final String DEFAULT_INCLUDE_PATTERN = "/api/.*";
-
     public SwaggerConfig() {
 
     }
@@ -46,8 +43,6 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build()
                 .useDefaultResponseMessages(false).apiInfo(apiInfo()).globalResponseMessage(RequestMethod.GET, list)
                 .globalResponseMessage(RequestMethod.POST, list)
-                .securityContexts(Lists.newArrayList(securityContext()))
-                .securitySchemes(Lists.newArrayList(apiKey()))
                 .useDefaultResponseMessages(false);
 
     }
@@ -57,23 +52,5 @@ public class SwaggerConfig {
                 "", ""), "", "", Collections.emptyList());
     }
 
-    private ApiKey apiKey() {
-        return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
-    }
 
-    private SecurityContext securityContext() {
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex(DEFAULT_INCLUDE_PATTERN))
-                .build();
-    }
-
-    List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope
-                = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return Lists.newArrayList(
-                new SecurityReference("JWT", authorizationScopes));
-    }
 }
